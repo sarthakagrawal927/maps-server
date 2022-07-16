@@ -8,8 +8,14 @@ const server = fastify({
   }
 })
 
+server.register(require('@fastify/cors'), {
+  origin: '*',
+})
+
 server.get('/ping', async (_request: FastifyRequestType, _reply: FastifyReplyType) => {
-  return 'pong\n'
+  return {
+    data: 'pong\n'
+  }
 })
 
 server.listen({ port: 8080 }, (err: Error | null, address: string) => {
